@@ -1,5 +1,7 @@
 package domain;
 
+import generator.RandomNumberGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,4 +29,19 @@ public class Cars {
                 .filter(car -> car.getCount() == max)
                 .collect(Collectors.toList()));
     }
+
+    public void race() {
+        cars.stream().forEach(car -> car.move(RandomNumberGenerator.generate()));
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Car car : cars) {
+            sb.append(car.toString());
+            sb.append("\n");
+        }
+
+        return sb.toString();
+    }
+
 }
