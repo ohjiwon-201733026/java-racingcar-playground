@@ -2,6 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Cars {
     private List<Car> cars;
@@ -21,16 +22,23 @@ public class Cars {
         return playResult.toString();
     }
 
-    public String getWinner() {
+    private int getMaxPos() {
         int maxPos = 0;
         for(Car car : cars) {
             if(car.isMaxPos(maxPos)) maxPos = car.getPosition();
         }
 
-        List<String> winners = new ArrayList<>();
-        for (Car car : cars) {
-            if (car.getPosition() == maxPos) winners.add(car.getName());
-        }
+        return maxPos;
+
+    }
+
+    public String getWinners() {
+        int maxPos = getMaxPos();
+
+        List<String> winners = cars.stream()
+                .filter(car -> car.matchPosition(maxPos))
+                .map(car -> car.getName())
+                .collect(Collectors.toList());
         return String.join(", ", winners);
     }
 }

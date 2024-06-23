@@ -28,6 +28,10 @@ public class Car {
         return this.position > maxPos;
     }
 
+    public boolean matchPosition(int maxPos) {
+        return this.position == maxPos;
+    }
+
     public int getPosition() {
         return position;
     }

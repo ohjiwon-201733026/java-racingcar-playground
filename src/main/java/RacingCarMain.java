@@ -14,7 +14,7 @@ public class RacingCarMain {
             System.out.println(cars.toString());
         }
 
-        String winners = cars.getWinner();
+        String winners = cars.getWinners();
         System.out.println(winners +"가 최종 우승했습니다.");
     }
 }
